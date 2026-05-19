@@ -1,0 +1,6 @@
+path: C:/Users/ADMIN/Desktop/PROJECT/Zero-Dce1/Zero-DCE_code/yolo_dataset
+train: train/images
+val: valid/images
+
+nc: 5
+names: ['Car', 'Major Accident', 'Minor Accident', 'Motor', 'Not Accident']

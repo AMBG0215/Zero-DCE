@@ -39,8 +39,9 @@ def lowlight(image_path):
 	print(end_time)
 	image_path = image_path.replace('test_data','result')
 	result_path = image_path
-	if not os.path.exists(image_path.replace('/'+image_path.split("/")[-1],'')):
-		os.makedirs(image_path.replace('/'+image_path.split("/")[-1],''))
+	result_dir = os.path.dirname(result_path)
+	if result_dir and not os.path.exists(result_dir):
+		os.makedirs(result_dir)
 
 	torchvision.utils.save_image(enhanced_image, result_path)
 
@@ -52,8 +53,10 @@ if __name__ == '__main__':
 		file_list = os.listdir(filePath)
 
 		for file_name in file_list:
-			test_list = glob.glob(filePath+file_name+"/*") 
+			test_list = glob.glob(filePath+file_name+"/*")
 			for image in test_list:
+				if not image.lower().endswith(('.jpg', '.jpeg', '.png', '.bmp', '.tif', '.tiff')):
+					continue
 				# image = image
 				print(image)
 				lowlight(image)
